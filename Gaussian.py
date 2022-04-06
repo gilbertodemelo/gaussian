@@ -11,4 +11,22 @@ class Gaussian:
         stdev (float representing the standard deviation of the distribution
         data_list (list of floats) a list of floats extracted from the data file
     """
-    def __init__(self):
+    def __init__(self, mu = 0, sigma = 1):
+        self.mean = mu
+        self.stdev = sigma
+        self.data = []
+
+    def calculate_mean(self) -> float:
+        """Method to calculate the mean of the data set.
+
+        Args:
+            None
+
+        Returns:
+            float: mean of the data set
+        """
+        sum: int = 0
+        for item in self.data:
+            sum += item
+
+        return sum / len(self.data)
