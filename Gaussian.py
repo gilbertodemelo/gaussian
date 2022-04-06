@@ -25,8 +25,29 @@ class Gaussian:
         Returns:
             float: mean of the data set
         """
-        sum: int = 0
+        sum= 0
         for item in self.data:
             sum += item
 
         return sum / len(self.data)
+
+    def calculate_stdev(self, sample=True) -> float:
+        """Method to calculate the standard deviation of the data set.
+
+        Args:
+            sample (bool): whether the data represents a sample or population
+
+        Returns:
+            float: standard deviation
+        """
+        mean = self.calculate_mean()
+        sum_of_squares = 0
+        for item in self.data:
+            deviation = (item - mean)
+            deviation *= deviation
+            sum_of_squares += deviation
+        if sample:
+            variance = sum_of_squares / (len(self.data) - 1)
+        else:
+            variance = sum_of_squares / len(self.data)
+        return math.sqrt(variance)
